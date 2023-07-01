@@ -153,7 +153,7 @@ export const revealed = (arr, x, y, newNonMinesCount) => {
             arr[single.x + 1][single.y + 1].revealed = true;
             newNonMinesCount--;
         }
-    }
+    } 
 
     return { arr, newNonMinesCount };
 };

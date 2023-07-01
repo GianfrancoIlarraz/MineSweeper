@@ -2,6 +2,14 @@
 import '../style/container.scss'
 
 const Cell = ({ details, updateFlag, revealCell }) => {
+
+    const numColorCode = (num) => {
+        
+    }
+
+
+
+
     return (
         <div
             onClick={() => revealCell(details.x, details.y)}

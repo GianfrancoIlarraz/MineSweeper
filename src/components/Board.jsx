@@ -110,6 +110,19 @@ const Board = () => {
                 }
             </div>
             {
+                won && <div>
+                    <div className='winBack'>
+                    </div>
+                    <div className='win'>
+                        <h2 className='winText'>Congratulations, you won :D</h2>
+                        <div className='winButtons'>
+                            <button className='playAgain animate__animated animate__wobble' onClick={() => { setWon(false); medium() }}>Play Again</button>
+                            <button className='playAgain animate__animated animate__wobble' onClick={() => setWon(false)}>Quit</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            {
                 lost && <div>
                     <div className='lostBack'>
                     </div>
