@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.difficulty {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 2px;
+    padding: 2px;
+  }
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.revealedCell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background-color: rgb(182, 182, 182);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remaining {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.playAgain {
+  padding: 5px;
+  font-size: larger;
+  margin: 20px;
+  background-color: rgb(178, 178, 223);
+  &:hover {
+    background-color: rgb(148, 148, 206);
+  }
+  cursor: pointer;
+}
+
+.modalOff {
+  visibility: hidden;
+}
+
+.modalOn {
+  visibility: visible;
+}
+
+.winBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  top: 0;
+  opacity: 0.4;
+}
+
+.win {
+  width: 25%;
+  height: 25%;
+  position: absolute;
+  top: 20%;
+  left: 37.5%;
+  background-color: rgb(66, 66, 156);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  &Text {
+    margin-top: 20%;
+  }
+    &Buttons{
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+    }
+}
