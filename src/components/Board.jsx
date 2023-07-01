@@ -11,6 +11,7 @@ const Board = () => {
     const [nonMineCount, setNonMineCount] = useState(0)
     const [mineLocations, setMineLocations] = useState([])
     const [won, setWon] = useState(false)
+    const [lost, setLost] = useState(false)
 
     // ComponentDidMount
     useEffect(function freshBoard() {
@@ -36,7 +37,7 @@ const Board = () => {
     const revealCell = (x, y) => {
         let newGrid = JSON.parse(JSON.stringify(grid))
         if (newGrid[x][y].value === 'X') {
-            alert('Mine found');
+            setLost(true);
             for (let i = 0; i < mineLocations.length; i++) {
                 newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true
             }
@@ -106,18 +107,19 @@ const Board = () => {
                 }
             </div>
             {
-                won && <div>
-                    <div className='winBack'>
+                lost && <div>
+                    <div className='lostBack'>
                     </div>
-                    <div className='win'>
-                        <h2 className='winText'>Congratulations, you won</h2>
-                        <div className='winButtons'>
-                            <button className='playAgain animate__animated animate__wobble' onClick={() => {setWon(false);medium()}}>Play Again</button>
-                            <button className='playAgain animate__animated animate__wobble' onClick={() => setWon(false)}>Quit</button>
+                    <div className='lost'>
+                        <h2 className='lostText'>Oops, you stepped on a bomb :(</h2>
+                        <div className='lostButtons'>
+                            <button className='playAgain animate__animated animate__wobble' onClick={() => {setLost(false);medium()}}>Play Again</button>
+                            <button className='playAgain animate__animated animate__wobble' onClick={() => setLost(false)}>Quit</button>
                         </div>
                     </div>
                 </div>
             }
+
 
 
         </div>
