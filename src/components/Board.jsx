@@ -25,9 +25,10 @@ const Board = () => {
     const updateFlag = (e, x, y) => {
         e.preventDefault()
         let newGrid = JSON.parse(JSON.stringify(grid))
-        newGrid[x][y].flagged = !newGrid[x][y].flagged;
-        console.log(newGrid[x][y].flagged)
-        setGrid(newGrid)
+        if (!newGrid[x][y].revealed) {
+            newGrid[x][y].flagged = !newGrid[x][y].flagged;
+            setGrid(newGrid)
+        }
     }
 
 
@@ -35,21 +36,23 @@ const Board = () => {
     // Reveal Cell
     // On Left Click
     const revealCell = (x, y) => {
-        let newGrid = JSON.parse(JSON.stringify(grid))
-        if (newGrid[x][y].value === 'X') {
-            setLost(true);
-            for (let i = 0; i < mineLocations.length; i++) {
-                newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true
-            }
-            setGrid(newGrid)
-        } else {
-            if (!newGrid[x][y].revealed) {
+        if (!grid[x][y].revealed && !grid[x][y].flagged) {
+            let newGrid = JSON.parse(JSON.stringify(grid))
+            if (newGrid[x][y].value === 'X') {
+                setLost(true);
+                for (let i = 0; i < mineLocations.length; i++) {
+                    newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true
+                }
+                setGrid(newGrid)
+            } else {
+
                 let newRevealedBoard = revealed(newGrid, x, y, nonMineCount)
                 setGrid(newRevealedBoard.arr)
                 setNonMineCount(newRevealedBoard.newNonMinesCount)
                 if (nonMineCount == 1) {
                     setWon(true)
                 }
+
             }
         }
 
@@ -113,7 +116,7 @@ const Board = () => {
                     <div className='lost'>
                         <h2 className='lostText'>Oops, you stepped on a bomb :(</h2>
                         <div className='lostButtons'>
-                            <button className='playAgain animate__animated animate__wobble' onClick={() => {setLost(false);medium()}}>Play Again</button>
+                            <button className='playAgain animate__animated animate__wobble' onClick={() => { setLost(false); medium() }}>Play Again</button>
                             <button className='playAgain animate__animated animate__wobble' onClick={() => setLost(false)}>Quit</button>
                         </div>
                     </div>
