@@ -7,7 +7,9 @@ const Cell = ({ details, updateFlag, revealCell }) => {
             onClick={() => revealCell(details.x, details.y)}
             onContextMenu={(e) => updateFlag(e, details.x, details.y)}
             className={`cell ${details.revealed ? 'revealedCell' : ""}`}>
-            {details.revealed ? details.value : ''}
+            {
+                details.flagged ? 'flag' : (details.revealed ? (details.value === 0 ? '' : details.value) : '')
+            }
         </div>
     )
 }
